@@ -15,15 +15,15 @@ const database = firebase.database();
 
 // Load Shayaris from Firebase
 function loadShayaris() {
-  
   database.ref('shayaris').once('value', (snapshot) => {
     const shayaris = snapshot.val();
     const carouselInner = document.getElementById('carouselInner');
     carouselInner.innerHTML = "";
+
     for (let key in shayaris) {
       const shayari = shayaris[key];
       const carouselItem = document.createElement('div');
-      carouselItem.classList.add("card","swiper-slide");
+      carouselItem.classList.add("card", "swiper-slide");
       const content = document.createElement('div');
       content.classList.add("card-content");
       const des = document.createElement('p');
@@ -32,17 +32,47 @@ function loadShayaris() {
       des.style.whiteSpace = 'pre-line';
       const butt = document.createElement('button');
       butt.classList.add("button");
-      butt.onclick= ()=>{
+      butt.onclick = () => {
         window.localStorage.setItem("s001", shayari.text);
-        window. open ("/Download", "_self")
+        window.open("/Download", "_self");
       }
       butt.innerHTML = "Download";
-      
+
       content.appendChild(des);
       content.appendChild(butt);
       carouselItem.appendChild(content);
       carouselInner.appendChild(carouselItem);
     }
+
+    // Initialize Swiper after loading content
+    var swiper = new Swiper(".slide-content", {
+      slidesPerView: 3,
+      spaceBetween: 25,
+      loop: true,
+      centerSlide: 'true',
+      fade: 'true',
+      grabCursor: 'true',
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        dynamicBullets: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        520: {
+          slidesPerView: 2,
+        },
+        950: {
+          slidesPerView: 3,
+        },
+      },
+    });
   });
 }
 
