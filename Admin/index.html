@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharayi-RVSR | Admin</title>
+  <link href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.2-web/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- The popup -->
+<div id="popup" class="popup">
+  <!-- Popup content -->
+  <div class="popup-content">
+    <form method="dialog">
+      <h3>Enter the credentials</h3>
+      <input placeholder="ID" type="text" id="id" name="id" required>
+      <input placeholder="Password" type="text" id="password" name="password" required>
+      <button type="submit" onclick="checkit()">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+
+  <div class="container">
+    <div class="admin-panel">
+      <h1>Admin Panel</h1>
+      <textarea id="shayariInput" placeholder="Write your Shayari here..."></textarea>
+      <button onclick="saveShayari()">Save</button>
+      <div class="lr"></div>
+      <div id="adminShayariList"></div>
+    </div>
+  </div>
+
+  <!-- Edit Shayari Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      Edit the Shayari<span class="close" onclick="closeEditModal()">&times;</span>
+      <textarea id="editShayariInput"></textarea>
+      <button onclick="submitEditShayari()">Submit</button>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
